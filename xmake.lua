@@ -1,4 +1,4 @@
-set_project("testprog")
+set_project("Calamit")
 set_version("0.0.0")
 set_languages("c++17")
 
