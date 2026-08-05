@@ -2,7 +2,7 @@ set_project("testprog")
 set_version("0.0.0")
 set_languages("c++17")
 
-target("testprog")
+target("Calamit")
     set_kind("binary")
     add_files("main.cpp")
 
@@ -26,13 +26,14 @@ target("testprog")
     end
 
     -- Куда класть готовый бинарник
-    set_targetdir("release")
+    set_targetdir("../CalamitEngine")
 
     -- Автозапуск после сборки
     after_build(function(target)
-        local targetfile = target:targetfile()
-        if targetfile and os.isfile(targetfile) then
-            print("Сборка завершена.")
-            os.execv(targetfile, {})
-        end
+        local dir = target:targetdir()
+        local lua_dst = path.join(dir, "lua")
+        os.tryrm(lua_dst)
+        os.cp("lua", lua_dst)
+        os.cd(dir)
+        os.execv(target:targetfile(), {})
     end)
