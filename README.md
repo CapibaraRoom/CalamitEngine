@@ -1,6 +1,6 @@
 # Calamit-Engine
 
-Engine for Clamitasia
+Игровой движок для [Clamitasia](https://vk.ru/clamitasia)
 
 ## Используемые средства:
 > - 3D-Engine: [RayLib](https://github.com/raysan5/raylib)
