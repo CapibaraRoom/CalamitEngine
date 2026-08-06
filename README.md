@@ -15,6 +15,10 @@ chmod +x ./getlibs.sh && ./getlibs.sh
 xmake clean && xmake
 ```
 
+## История добавления файлов
+
+> ```main.cpp settings.hpp luaConverter.hpp```
+
 ## Используемые средства:
 > - Engine: [RayLib](https://github.com/raysan5/raylib)
 > - Scripts: [Lua](https://www.lua.org)+[Sol2](https://github.com/ThePhD/sol2); [LuaJIT](https://github.com/LuaJIT/LuaJIT)
