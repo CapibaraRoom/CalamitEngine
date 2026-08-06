@@ -7,7 +7,9 @@
 ```
 git clone https://github.com/CapibaraRoom/CalamitEngine.git
 cd CalamitEngine
-./getlibs.sh
+
+chmod +x ./getlibs.sh && ./getlibs.sh
+
 xmake clean && xmake
 ```
 
