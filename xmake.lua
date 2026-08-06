@@ -19,6 +19,9 @@ target("Calamit")
     -- Sol2
     add_includedirs("libs/sol2/include")
 
+    -- Свои заголовки
+    add_includedirs("headers")
+
     -- Системные зависимости для Linux
     if is_plat("linux") then
         add_links("pthread", "dl", "m")
