@@ -29,7 +29,7 @@ target("Calamit")
     end
 
     -- Куда класть готовый бинарник
-    set_targetdir("../CalamitEngine")
+    set_targetdir("../Calamit")
 
     -- Автозапуск после сборки
     after_build(function(target)
