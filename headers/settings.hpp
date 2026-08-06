@@ -41,8 +41,8 @@ public:
     Setting<bool> resizable{false};
 
     void setValue(const std::string& key, sol::object value) {
-        auto it = mappings_map.find(key);
-        if (it != mappings_map.end())
+        auto it = mappings.find(key);
+        if (it != mappings.end())
             it->second(value);
         else
             std::cerr << "Warning: unknown setting key: " << key << "\n";
@@ -51,24 +51,25 @@ public:
     void loadFromLua(const std::string& path) {
         sol::state lua;
         lua.open_libraries(sol::lib::base, sol::lib::package);
-
-        lua.set_function("set_setting", [this](const std::string& key, sol::object value) {
-            this->setValue(key, value);
-        });
-
+    
         try {
             lua.script_file(path);
-            std::cout << "Lua settings script executed: " << path << "\n";
+            sol::table config = lua["Settings"];
+            if (!config.valid()) return;
+            for (auto& [key, setter] : mappings)
+                if (config[key].valid())
+                    setter(config[key]);
+            std::cout << "Settings loaded from " << path << "\n";
         } catch (const sol::error& e) {
             std::cerr << "ERROR: lua-settings: " << e.what() << "\n";
         }
-    }
+}
 
 private:
-    std::unordered_map<std::string, std::function<void(sol::object)>> mappings_map;
+    std::unordered_map<std::string, std::function<void(sol::object)>> mappings;
     template <typename U>
     void addMapping(const std::string& key, Setting<U>& field) {
-        mappings_map[key] = [&field](sol::object obj) {
+        mappings[key] = [&field](sol::object obj) {
             field.setFromLua(obj);
         };
     }
