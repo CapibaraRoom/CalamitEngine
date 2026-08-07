@@ -17,6 +17,9 @@ chmod +x ./getlibs.sh && ./getlibs.sh
 xmake clean && xmake
 ```
 
+## Очень нада
+> luajit -> lua
+
 ## История добавления файлов
 
 > ```main.cpp settings.hpp luaConverter.hpp```
