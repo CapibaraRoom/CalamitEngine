@@ -4,8 +4,8 @@ rm -rf libs/raylib libs/luajit libs/sol2
 
 mkdir -p libs/_download
 mkdir -p libs/raylib
-mkdir -p libs/luajit/include
-mkdir -p libs/luajit/lib
+mkdir -p libs/lua/include
+mkdir -p libs/lua/lib
 mkdir -p libs/sol2/include
 
 cd ./libs/_download
@@ -29,8 +29,8 @@ echo "Установка Lua 5.4.8..."
 tar -xzf lua-5.4.8.tar.gz
 cd lua-5.4.8
 make linux -j$(nproc)
-cp src/liblua.a ../../luajit/lib/
-cp src/*.h ../../luajit/include/
+cp src/liblua.a ../../lua/lib/
+cp src/*.h ../../lua/include/
 cd ..
 # rm -rf lua-5.4.8
 
