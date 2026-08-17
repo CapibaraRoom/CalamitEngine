@@ -14,8 +14,8 @@ cd CalamitEngine
 
 chmod +x ./getlibs.sh && ./getlibs.sh
 
-chmod +x ./take && ./take
-xmake clean && xmake
+chmod +x ./take
+./take run
 ```
 
 ## Очень нада
