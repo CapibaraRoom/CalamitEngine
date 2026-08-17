@@ -8,6 +8,14 @@ LIBDIRS  = "-Llibs/raylib/lib -Llibs/lua/lib"
 LIBS     = "-l:libraylib.a -l:liblua.a -lpthread -ldl -lm -lX11"
 OUT      = "../Calamit/Calamit"
 
+
+[clean]
+desc = "Очистка"
+run = [
+    "rm -f ${OUT}",
+    "rm -rf ../Calamit/lua"
+]
+
 [build]
 desc = "Сборка Calamit"
 run = [
@@ -19,13 +27,4 @@ run = [
 [run]
 desc = "Запуск Calamit"
 deps = ["build"]
-run = [
-    "cd ../Calamit && ./Calamit"
-]
-
-[clean]
-desc = "Очистка"
-run = [
-    "rm -f ${OUT}",
-    "rm -rf ../Calamit/lua"
-]
+run = ["cd ../Calamit && ./Calamit"]
