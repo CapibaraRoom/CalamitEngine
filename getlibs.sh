@@ -10,6 +10,14 @@ mkdir -p libs/sol2/include
 
 cd ./libs/_download
 
+
+# -------------------- Take --------------------
+git clone https://github.com/Roit-liasp/Take.git take_repo
+cd take_repo
+make
+cp take ../../../
+cd ../../
+
 # -------------------- Raylib 6.0 --------------------
 echo "Установка Raylib 6.0..."
 # wget -nc https://github.com/raysan5/raylib/releases/download/6.0/raylib-6.0_linux_amd64.tar.gz
