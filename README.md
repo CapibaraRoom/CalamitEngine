@@ -18,7 +18,7 @@ chmod +x ./getlibs.sh && ./getlibs.sh
 ```
 
 ## Очень нада
-> luajit -> lua
+> ~~luajit -> lua~~
 
 ## История добавления файлов
 
