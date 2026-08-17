@@ -12,6 +12,7 @@ cd ./libs/_download
 
 
 # -------------------- Take --------------------
+echo "Установка системы сборки Take..."
 # wget https://github.com/Roit-liasp/Take/archive/refs/heads/main.tar.gz -O take-main.tar.gz
 tar -xzf take-main.tar.gz
 cd Take-main
