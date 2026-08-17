@@ -1,0 +1,31 @@
+default = "run"
+
+[vars]
+CXX      = "g++"
+STD      = "-std=c++17"
+INCLUDES = "-Ilibs/raylib/include -Ilibs/lua/include -Ilibs/sol2/include -Iheaders"
+LIBDIRS  = "-Llibs/raylib/lib -Llibs/lua/lib"
+LIBS     = "-l:libraylib.a -l:liblua.a -lpthread -ldl -lm -lX11"
+OUT      = "../Calamit/Calamit"
+
+[build]
+desc = "Сборка Calamit"
+run = [
+    "mkdir -p ../Calamit",
+    "${CXX} ${STD} ${INCLUDES} ${LIBDIRS} main.cpp -o ${OUT} ${LIBS}",
+    "cp -r lua ../Calamit/"
+]
+
+[run]
+desc = "Запуск Calamit"
+deps = ["build"]
+run = [
+    "cd ../Calamit && ./Calamit"
+]
+
+[clean]
+desc = "Очистка"
+run = [
+    "rm -f ${OUT}",
+    "rm -rf ../Calamit/lua"
+]
