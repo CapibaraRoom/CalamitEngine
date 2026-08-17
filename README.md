@@ -11,9 +11,7 @@
 ```
 git clone https://github.com/CapibaraRoom/CalamitEngine.git
 cd CalamitEngine
-
-chmod +x ./getlibs.sh && ./getlibs.sh
-
+./getlibs.sh
 ./take
 ```
 
