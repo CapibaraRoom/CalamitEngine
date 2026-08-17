@@ -12,13 +12,13 @@ cd ./libs/_download
 
 
 # -------------------- Take --------------------
-# git clone https://github.com/Roit-liasp/Take.git take_repo
-wget https://github.com/Roit-liasp/Take/archive/refs/heads/main.tar.gz -O take-main.tar.gz
+# wget https://github.com/Roit-liasp/Take/archive/refs/heads/main.tar.gz -O take-main.tar.gz
 tar -xzf take-main.tar.gz
-# cd take_repo
-# make
-# cp take ../../../
-# cd ..
+cd Take-main
+make
+cp take ../../../
+cd ..
+# rm -rf Take-main
 
 # -------------------- Raylib 6.0 --------------------
 echo "Установка Raylib 6.0..."
