@@ -16,7 +16,7 @@ git clone https://github.com/Roit-liasp/Take.git take_repo
 cd take_repo
 make
 cp take ../../../
-cd ../../
+cd ..
 
 # -------------------- Raylib 6.0 --------------------
 echo "Установка Raylib 6.0..."
