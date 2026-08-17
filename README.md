@@ -14,7 +14,7 @@ cd CalamitEngine
 
 chmod +x ./getlibs.sh && ./getlibs.sh
 
-./take run
+./take
 ```
 
 ## Очень нада
