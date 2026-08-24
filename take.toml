@@ -21,6 +21,7 @@ desc = "Сборка Calamit"
 run = [
     "mkdir -p ../Calamit",
     "${CXX} main.cpp -o ${OUT} ${RAYLIB} ${LUAJIT} ${SYSTEM}",
+    "cp -r config.lua ../Calamit/",
     "cp -r lua ../Calamit/"
 ]
 
