@@ -43,12 +43,12 @@ cd ..
 echo "Установка LuaJIT v2.1..."
 # wget https://github.com/LuaJIT/LuaJIT/archive/refs/heads/v2.1.tar.gz -O luajit-v2.1.tar.gz
 tar -xzf luajit-v2.1.tar.gz
-cd LuaJIT-v2.1
+cd LuaJIT-2.1
 make -j$(nproc)
 cp src/libluajit.a ../../luajit/lib/
 cp src/*.h ../../luajit/include/
 cd ..
-# rm -rf LuaJIT-v2.1
+# rm -rf LuaJIT-2.1
 
 # -------------------- Sol2 --------------------
 echo "Установка Sol2 v3.5.0..."
