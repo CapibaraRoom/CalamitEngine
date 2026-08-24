@@ -6,7 +6,7 @@ OUT      = "../Calamit/Calamit"
 
 RAYLIB   = "-Ilibs/raylib/include -Llibs/raylib/lib -l:libraylib.a"
 LUAJIT   = "-Ilibs/luajit/include -Llibs/luajit/lib -l:libluajit.a"
-SYSTEM   = "-lpthread -ldl -lm -lX11"
+SYSTEM   = "-Iheaders -lpthread -ldl -lm -lX11"
 
 
 [clean]
