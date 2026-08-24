@@ -1,87 +1,64 @@
-#ifndef CALAMIT_SETTINGS_HPP
-#define CALAMIT_SETTINGS_HPP
-
-#include <string>
-#include <vector>
-#include <functional>
+#pragma once
 #include <unordered_map>
-#include <raylib.h>
-#include <sol/sol.hpp>
-#include <iostream>
-#include "luaConverter.hpp"
+#include <string>
+#include <functional>
+#include <cstdio>
 
-namespace calamit {
-
-template <typename T>
-class Setting {
-public:
-    Setting() = default;
-    Setting(T val) : value(val) {}
-
-    T get() const { return value; }
-    void set(const T& val) { value = val; }
-    void set(T&& val) { value = std::move(val); }
-
-    void setFromLua(sol::object obj) {
-        if (obj.valid())
-            value = LuaConverter<T>::convert(obj);
-    }
-
-private:
-    T value{};
-};
-
-class Settings {
-public:
-    Settings() { initMappings(); }
-
-    Setting<int> target_fps{60};
-    Setting<std::string> project_name{"CalamitProject"};
-    Setting<Vector2> window_size{{800.0f, 600.0f}};
-    Setting<bool> resizable{false};
-
-    void setValue(const std::string& key, sol::object value) {
-        auto it = mappings.find(key);
-        if (it != mappings.end())
-            it->second(value);
-        else
-            std::cerr << "Warning: unknown setting key: " << key << "\n";
-    }
-
-    void loadFromLua(const std::string& path) {
-        sol::state lua;
-        lua.open_libraries(sol::lib::base, sol::lib::package);
-    
-        try {
-            lua.script_file(path);
-            sol::table config = lua["Settings"];
-            if (!config.valid()) return;
-            for (auto& [key, setter] : mappings)
-                if (config[key].valid())
-                    setter(config[key]);
-            std::cout << "Settings loaded from " << path << "\n";
-        } catch (const sol::error& e) {
-            std::cerr << "ERROR: lua-settings: " << e.what() << "\n";
-        }
+extern "C" {
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
 }
 
-private:
-    std::unordered_map<std::string, std::function<void(sol::object)>> mappings;
-    template <typename U>
-    void addMapping(const std::string& key, Setting<U>& field) {
-        mappings[key] = [&field](sol::object obj) {
-            field.setFromLua(obj);
+class SettingsRegistry {
+    std::unordered_map<std::string, std::function<void(lua_State*, int)>> setters;
+public:
+    template<typename T>
+    void add(const char* name, T* var) {
+        setters[name] = [var](lua_State* L, int idx) {
+            if constexpr (std::is_same_v<T, int>) {
+                *var = static_cast<T>(lua_tointeger(L, idx));
+            } else if constexpr (std::is_same_v<T, float>) {
+                *var = static_cast<float>(lua_tonumber(L, idx));
+            } else if constexpr (std::is_same_v<T, double>) {
+                *var = lua_tonumber(L, idx);
+            } else if constexpr (std::is_same_v<T, bool>) {
+                *var = lua_toboolean(L, idx) != 0;
+            } else if constexpr (std::is_same_v<T, std::string>) {
+                const char* s = lua_tostring(L, idx);
+                *var = s ? s : "";
+            } else {
+                static_assert(sizeof(T) == 0, "Unsupported type");
+            }
         };
     }
 
-    void initMappings() {
-        addMapping("target_fps", target_fps);
-        addMapping("project_name", project_name);
-        addMapping("window_size", window_size);
-        addMapping("resizable", resizable);
+    bool set(const std::string& name, lua_State* L, int idx) {
+        auto it = setters.find(name);
+        if (it != setters.end()) {
+            it->second(L, idx);
+            return true;
+        }
+        return false;
     }
 };
 
+inline SettingsRegistry g_settings;
+#define ADD_SETTING(var) g_settings.add(#var, &var)
+
+inline int l_set_setting(lua_State* L) {
+    const char* name = luaL_checkstring(L, 1);
+    if (g_settings.set(name, L, 2))
+        return 0;
+    return luaL_error(L, "Unknown setting: %s", name);
 }
 
-#endif
+inline int l_importSettings(lua_State* L) {
+    const char* path = luaL_checkstring(L, 1);
+    if (luaL_dofile(L, path) != LUA_OK) {
+        const char* err = lua_tostring(L, -1);
+        fprintf(stderr, "Failed to load settings: %s\n", err ? err : "(unknown)");
+        lua_pop(L, 1);
+    }
+    return 0;
+}
