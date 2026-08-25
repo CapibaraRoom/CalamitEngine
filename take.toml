@@ -13,7 +13,7 @@ SYSTEM   = "-Iheaders -lpthread -ldl -lm -lX11"
 desc = "Очистка"
 run = [
     "rm -f ${OUT}",
-    "rm -rf ../Calamit/lua"
+    "rm -rf ../Calamit/lua",
     "rm -rf ../Calamit/config.lua"
 ]
 
