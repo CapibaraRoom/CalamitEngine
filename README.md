@@ -22,7 +22,7 @@ cd CalamitEngine
 > строениедерева нод  
 > базовые функции lua  
 > базовые ноды gui  
-> можно ли сделать импорт ассетов из библиотек unity, godot?  
+> можно ли сделать импорт ассетов из библиотек [Unity](https://assetstore.unity.com/top-assets/top-free), [Godot](https://godotengine.org/asset-library/asset)?  
 > ~~lua -> luajit~~
 
 
