@@ -16,10 +16,37 @@ cd CalamitEngine
 ./take
 ```
 
+## Строение собранного проекта
+
+```
+Calamit/
+├── Calamit            -- исполняемый файл проекта
+├── config.lua         -- конфиг с базовыми настройками (точка входа)
+├── lua/               -- основные lua-скрипты для работы
+│   ├── types/*        -- базовые ноды
+│   └── settings.lua   -- файл с настройками проекта
+└── scenes/*           -- сторонние ноды проекта
+```
+
 
 ## Очень нада
+
+
+> **Планы на версию**  
 > базовые ноды gui  
+> итоговый тест производительности (100x100 сетка)  
+> добавить оптимальные флаги при компиляции  
+> 
+> ---
+> 
+> **Планы на будущее**
+> сделать сайт с документацией
+> редактор с саморепликацией
 > можно ли сделать импорт ассетов из библиотек [Unity](https://assetstore.unity.com/top-assets/top-free), [Godot](https://godotengine.org/asset-library/asset)?  
+> 
+> ---
+> 
+> **Основные последние изменения**  
 > ~~строениедерева нод~~  - надеюсь, что не придётся часто сюда влезать  
 > ~~базовые функции lua~~  - танцевал я этот ваш luajit  
 > ~~чтение настроек~~  - наконец, больше не нужно по сто раз всё перекомпилировать  
@@ -27,7 +54,8 @@ cd CalamitEngine
 
 
 ## Используемые средства:
-> - Engine: [RayLib](https://github.com/raysan5/raylib)
-> - Scripts: [Lua](https://www.lua.org)+[Sol2](https://github.com/ThePhD/sol2); [LuaJIT](https://github.com/LuaJIT/LuaJIT)
-> - LowPoly-3D: [Blockbench](https://blockbench.ru/latest/appimage)
-> - Reference: [Godot](https://godotengine.org/)
+> - Engine: [RayLib](https://github.com/raysan5/raylib) - основа для отрисовки графики
+> - Scripts: [LuaJIT](https://github.com/LuaJIT/LuaJIT); [Lua](https://www.lua.org)+[Sol2](https://github.com/ThePhD/sol2) - средства скриптинга
+> - Build system: [Take](https://github.com/Roit-liasp/Take) - шедевральная система сборки; автор просто лапочка
+> - LowPoly-3D: [Blockbench](https://blockbench.ru/latest/appimage) - простой редактор для графики
+> - Reference: [Godot](https://godotengine.org/) - целевое направление
