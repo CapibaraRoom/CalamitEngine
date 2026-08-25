@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "settings.hpp"
+#include "luawork.hpp"
 
 int windowWidth = 800;
 int windowHeight = 600;
@@ -18,28 +19,22 @@ void registerSettings() {
 int main() {
     registerSettings();
 
-    lua_State* L = luaL_newstate();
-    luaL_openlibs(L);
-
-    lua_register(L, "set_setting", l_set_setting);
-    lua_register(L, "importSettings", l_importSettings);
-
-    if (luaL_dofile(L, "config.lua") != LUA_OK) {
-        const char* err = lua_tostring(L, -1);
-        fprintf(stderr, "Config warning: %s\n", err ? err : "(unknown)");
-        lua_pop(L, 1);
-    }
+    lua_State* L = init_lua();
 
     SetConfigFlags(windowResizable ? FLAG_WINDOW_RESIZABLE : 0);
     InitWindow(windowWidth, windowHeight, windowTitle.c_str());
     SetTargetFPS(targetFPS);
 
+    call_onload_all(L);
+
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        DrawText(("Title: " + windowTitle).c_str(), 10, 10, 20, BLACK);
+        call_ondraw_all(L);
+
         char buf[64];
+        DrawText(("Title: " + windowTitle).c_str(), 10, 10, 20, BLACK);
         sprintf(buf, "Size: %dx%d", windowWidth, windowHeight);
         DrawText(buf, 10, 35, 20, BLACK);
         sprintf(buf, "Target FPS: %d", targetFPS);
@@ -50,7 +45,7 @@ int main() {
         EndDrawing();
     }
 
-    lua_close(L);
+    close_lua(L);
     CloseWindow();
     return 0;
 }
