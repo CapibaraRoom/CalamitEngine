@@ -14,10 +14,12 @@ desc = "Очистка"
 run = [
     "rm -f ${OUT}",
     "rm -rf ../Calamit/lua"
+    "rm -rf ../Calamit/config.lua"
 ]
 
 [build]
 desc = "Сборка Calamit"
+deps = ["clean"]
 run = [
     "mkdir -p ../Calamit",
     "${CXX} main.cpp -o ${OUT} ${RAYLIB} ${LUAJIT} ${SYSTEM}",
