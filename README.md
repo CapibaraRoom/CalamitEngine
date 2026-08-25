@@ -56,6 +56,6 @@ Calamit/
 ## Используемые средства:
 > - Engine: [RayLib](https://github.com/raysan5/raylib) - основа для отрисовки графики
 > - Scripts: [LuaJIT](https://github.com/LuaJIT/LuaJIT); [Lua](https://www.lua.org)+[Sol2](https://github.com/ThePhD/sol2) - средства скриптинга
-> - Build system: [Take](https://github.com/Roit-liasp/Take) - шедевральная система сборки; автор просто лапочка
+> - Build system: [Take](https://github.com/Roit-liasp/Take) - шедевральная система сборки; автор лапочка
 > - LowPoly-3D: [Blockbench](https://blockbench.ru/latest/appimage) - простой редактор для графики
 > - Reference: [Godot](https://godotengine.org/) - целевое направление
