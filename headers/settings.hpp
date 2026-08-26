@@ -67,7 +67,7 @@ inline EngineSettings engine_settings;
 
 
 
-#define DEFINE_SETTING(type, name, default_value) \
+#define SETTINGS_PUSH(type, name, default_value) \
 type name = default_value; \
 namespace { \
     struct SettingReg_##name { \
