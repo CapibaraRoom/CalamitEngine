@@ -2,22 +2,13 @@
 #include "settings.hpp"
 #include "luawork.hpp"
 
-int windowWidth = 800;
-int windowHeight = 600;
-int targetFPS = 60;
-bool windowResizable = false;
-std::string windowTitle = "Calamit";
-
-void registerSettings() {
-    ADD_SETTING(windowWidth);
-    ADD_SETTING(windowHeight);
-    ADD_SETTING(targetFPS);
-    ADD_SETTING(windowResizable);
-    ADD_SETTING(windowTitle);
-}
+DEFINE_SETTING(int, windowWidth, 800);
+DEFINE_SETTING(int, windowHeight, 600);
+DEFINE_SETTING(int, targetFPS, 60);
+DEFINE_SETTING(bool, windowResizable, false);
+DEFINE_SETTING(std::string, windowTitle, "Calamit");
 
 int main() {
-    registerSettings();
 
     lua_State* L = init_lua();
 
