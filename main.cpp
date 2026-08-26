@@ -2,11 +2,11 @@
 #include "settings.hpp"
 #include "luawork.hpp"
 
-DEFINE_SETTING(int, windowWidth, 800);
-DEFINE_SETTING(int, windowHeight, 600);
-DEFINE_SETTING(int, targetFPS, 60);
-DEFINE_SETTING(bool, windowResizable, false);
-DEFINE_SETTING(std::string, windowTitle, "Calamit");
+SETTINGS_PUSH(int, windowWidth, 800);
+SETTINGS_PUSH(int, windowHeight, 600);
+SETTINGS_PUSH(int, targetFPS, 60);
+SETTINGS_PUSH(bool, windowResizable, false);
+SETTINGS_PUSH(std::string, windowTitle, "Calamit");
 
 int main() {
 
