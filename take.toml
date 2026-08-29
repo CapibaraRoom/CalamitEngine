@@ -14,7 +14,9 @@ desc = "Очистка"
 run = [
     "rm -f ${OUT_DIR}/${OUT}/${OUT}",
     "rm -f ${OUT_DIR}/${OUT}/config.lua",
+    "rm -f ${OUT_DIR}/${OUT}/engine.lua",
     "rm -rf ${OUT_DIR}/${OUT}/lua",
+    "rm -rf ${OUT_DIR}/${OUT}/scenes",
 ]
 
 [build]
@@ -24,7 +26,9 @@ run = [
     "mkdir -p ${OUT_DIR}/${OUT}",
     "${CXX} main.cpp -o ${OUT_DIR}/${OUT}/${OUT} ${RAYLIB} ${LUAJIT} ${SYSTEM}",
     "cp config.lua ${OUT_DIR}/${OUT}/",
+    "cp engine.lua ${OUT_DIR}/${OUT}/",
     "cp -r lua ${OUT_DIR}/${OUT}/",
+    "cp -r scenes ${OUT_DIR}/${OUT}/",
 ]
 
 [run]
