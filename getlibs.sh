@@ -4,8 +4,8 @@ rm -rf libs/raylib libs/luajit libs/sol2
 
 mkdir -p libs/_download
 mkdir -p libs/raylib
-mkdir -p libs/lua/include
-mkdir -p libs/lua/lib
+# mkdir -p libs/lua/include
+# mkdir -p libs/lua/lib
 mkdir -p libs/luajit/include
 mkdir -p libs/luajit/lib
 mkdir -p libs/sol2/include
