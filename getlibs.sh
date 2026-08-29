@@ -8,7 +8,7 @@ mkdir -p libs/raylib
 # mkdir -p libs/lua/lib
 mkdir -p libs/luajit/include
 mkdir -p libs/luajit/lib
-mkdir -p libs/sol2/include
+# mkdir -p libs/sol2/include
 
 cd ./libs/_download
 
