@@ -28,17 +28,6 @@ echo "Установка Raylib v6.0..."
 # wget -nc https://github.com/raysan5/raylib/releases/download/6.0/raylib-6.0_linux_amd64.tar.gz
 tar -xzf raylib-6.0_linux_amd64.tar.gz -C ../raylib --strip-components=1
 
-# # -------------------- Lua --------------------
-# echo "Установка Lua v5.4.8..."
-# # wget -nc https://www.lua.org/ftp/lua-5.4.8.tar.gz
-# tar -xzf lua-5.4.8.tar.gz
-# cd lua-5.4.8
-# make linux -j$(nproc)
-# cp src/liblua.a ../../lua/lib/
-# cp src/*.h ../../lua/include/
-# cd ..
-# # rm -rf lua-5.4.8
-
 # -------------------- LuaJIT --------------------
 echo "Установка LuaJIT v2.1..."
 # wget https://github.com/LuaJIT/LuaJIT/archive/refs/heads/v2.1.tar.gz -O luajit-v2.1.tar.gz
@@ -49,6 +38,17 @@ cp src/libluajit.a ../../luajit/lib/
 cp src/*.h ../../luajit/include/
 cd ..
 # rm -rf LuaJIT-2.1
+
+# # -------------------- Lua --------------------
+# echo "Установка Lua v5.4.8..."
+# # wget -nc https://www.lua.org/ftp/lua-5.4.8.tar.gz
+# tar -xzf lua-5.4.8.tar.gz
+# cd lua-5.4.8
+# make linux -j$(nproc)
+# cp src/liblua.a ../../lua/lib/
+# cp src/*.h ../../lua/include/
+# cd ..
+# # rm -rf lua-5.4.8
 
 # # -------------------- Sol2 --------------------
 # echo "Установка Sol2 v3.5.0..."
