@@ -16,6 +16,12 @@ cd CalamitEngine
 ./take
 ```
 
+Для сборки в Nix настроить shell:
+
+```
+nix-shell -p gcc gnumake pkg-config cmake libx11 libxrandr libxinerama libxi libxcursor libGL mesa
+```
+
 ## Строение собранного проекта
 
 ```
