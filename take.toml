@@ -7,7 +7,7 @@ OUT_DIR  = ".."
 
 RAYLIB   = "-Ilibs/raylib/include -Llibs/raylib/lib -l:libraylib.a"
 LUAJIT   = "-Ilibs/luajit/include -Llibs/luajit/lib -l:libluajit.a"
-SYSTEM   = "-Iheaders -lpthread -ldl -lm -lX11"
+SYSTEM   = "-Iheaders -lpthread -ldl -lm -lX11 -lGL"
 
 [clean]
 desc = "Очистка"
